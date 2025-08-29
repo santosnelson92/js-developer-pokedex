@@ -163,3 +163,77 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
+
+/* === Modal de Detalhes do Pokémon === */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+}
+.modal.hidden { display: none; }
+
+.modal-content {
+  background: #fff;
+  width: 340px;
+  max-width: 92%;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+  animation: modalFadeIn 0.25s ease;
+}
+
+.close-btn {
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  color: #444;
+  float: right;
+}
+
+#pokemon-details {
+  margin-top: 8px;
+  text-align: center;
+}
+#pokemon-details img {
+  max-width: 180px;
+  height: auto;
+  display: block;
+  margin: 8px auto 12px;
+}
+#pokemon-details .types {
+  display: inline-flex;
+  gap: 6px;
+  padding: 0;
+  margin: 6px 0 10px;
+  list-style: none;
+}
+#pokemon-details .types .type {
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: .8rem;
+  text-transform: capitalize;
+}
+#pokemon-details h2 {
+  margin: 0 0 6px;
+  text-transform: capitalize;
+}
+#pokemon-details .stats {
+  text-align: left;
+  margin-top: 10px;
+}
+#pokemon-details .stats li {
+  display: flex;
+  justify-content: space-between;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

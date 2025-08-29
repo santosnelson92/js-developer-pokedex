@@ -33,3 +33,24 @@ pokeApi.getPokemons = (offset = 0, limit = 5) => {
         .then((detailRequests) => Promise.all(detailRequests))
         .then((pokemonsDetails) => pokemonsDetails)
 }
+
+// Detalhes completos por ID (para o modal)
+pokeApi.getPokemonDetailById = (id) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  return fetch(url)
+    .then((response) => response.json())
+    .then((poke) => {
+      return {
+        number: poke.id,
+        name: poke.name,
+        types: poke.types.map((t) => t.type.name),
+        photo:
+          poke.sprites.other?.['official-artwork']?.front_default ||
+          poke.sprites.other?.dream_world?.front_default ||
+          poke.sprites.front_default,
+        height: poke.height,
+        weight: poke.weight,
+        stats: poke.stats.map((s) => ({ name: s.stat.name, value: s.base_stat })),
+      };
+    });
+};
